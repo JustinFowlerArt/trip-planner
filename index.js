@@ -1,6 +1,8 @@
 // Bring in the express server and create application
 import express from "express";
 import tripRepo from "./repos/tripRepo.js";
+import errorHelper from "./helpers/errorHelpers.js";
+import cors from "cors";
 
 let app = express();
 
@@ -9,6 +11,9 @@ let router = express.Router();
 
 // Configure middleware to support JSON data parsing in request object
 app.use(express.json());
+
+// Configure CORS
+app.use(cors);
 
 // Create GET to return a list of all trips
 router.get('/', function (req, res, next) {
@@ -172,6 +177,15 @@ router.patch('/:id', function (req, res, next) {
 
 // Configure router so all routes are prefixed with /api/v1
 app.use('/api/', router);
+
+// Configure exception logger to console
+app.use(errorHelper.logErrorsToConsole);
+// Configure exception logger to file
+app.use(errorHelper.logErrorsToFile);
+// Configure client error handler
+app.use(errorHelper.clientErrorHandler);
+// Configure catch-all exception middleware last
+app.use(errorHelper.errorHandler);
 
 // Create server to listen on port 5000
 var server = app.listen(5000, function () {
