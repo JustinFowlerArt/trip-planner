@@ -1,7 +1,7 @@
 export const schema = {
     type: "object",
     properties: {
-      users: {
+      trips: {
         type: "array",
         minItems: 3,
         maxItems: 5,
@@ -13,22 +13,37 @@ export const schema = {
   
               minimum: 1,
             },
-            firstName: {
+            name: {
               type: "string",
-              faker: "name.firstName",
+              faker: "address.country",
             },
-            lastName: {
-              type: "string",
-              faker: "name.lastName",
+            expenses: {
+              type: "array",
+              minItems: 3,
+              maxItems: 5,
+                items: {
+                  type: "object",
+                  properties: {
+                    name: {
+                      type: "string",
+                      faker: "commerce.productName",
+                    },
+                    price: {
+                      type: "integer",
+                      faker: "commerce.price",
+                    },
+                  },
+                  required: ["name", "price"],
+                },
             },
-            email: {
-              type: "string",
-              faker: "internet.email",
+            total: {
+              type: "integer",
+              faker: "finance.amount",
             },
           },
-          required: ["id", "firstName", "lastName", "email"],
+          required: ["id", "name", "expenses", "total"],
         },
       },
     },
-    required: ["users"],
+    required: ["trips"],
   };

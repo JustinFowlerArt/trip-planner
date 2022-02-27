@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://trip-planner-client/./src/index.css"],"names":[],"mappings":"AAAA;IACI,uBAAuB;AAC3B;;AAEA;IACI,YAAY;AAChB,C","file":"main.e9b0bda36234fe4c55b6.css","sourcesContent":["body {\r\n    font-family: sans-serif;\r\n}\r\n\r\ntable th {\r\n    padding: 5px;\r\n}"],"sourceRoot":""}
