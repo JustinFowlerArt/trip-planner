@@ -12,11 +12,17 @@ let router = express.Router();
 // Configure middleware to support JSON data parsing in request object
 app.use(express.json());
 
-// Configure CORS
-app.use(cors);
+// Enable CORS for all requests
+// References: https://expressjs.com/en/resources/middleware/cors.html
+var corsOptions = {
+  "origin": "http://localhost:3000",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "optionsSuccessStatus": 204
+};
+app.use(cors(corsOptions));
 
 // Create GET to return a list of all trips
-router.get('/', function (req, res, next) {
+router.get('/trips/', function (req, res, next) {
   tripRepo.get(function (data) {
     res.status(200).json({
       "status": 200,
@@ -30,7 +36,7 @@ router.get('/', function (req, res, next) {
 });
 
 // Create GET/search?id=n&name=str to search for trips by 'id' and/or 'name'
-router.get('/search', function (req, res, next) {
+router.get('/trips/search', function (req, res, next) {
   let searchObject = {
     "id": req.query.id,
     "name": req.query.name
@@ -49,7 +55,7 @@ router.get('/search', function (req, res, next) {
 });
 
 // Create GET/id to return a single trip
-router.get('/:id', function (req, res, next) {
+router.get('/trips/:id', function (req, res, next) {
   tripRepo.getById(req.params.id, function (data) {
     if (data) {
       res.status(200).json({
@@ -75,7 +81,7 @@ router.get('/:id', function (req, res, next) {
   });
 });
 
-router.post('/', function (req, res, next) {
+router.post('/trips/', function (req, res, next) {
   tripRepo.insert(req.body, function(data) {
     res.status(201).json({
       "status": 201,
@@ -88,7 +94,7 @@ router.post('/', function (req, res, next) {
   });
 })
 
-router.put('/:id', function (req, res, next) {
+router.put('/trips/:id', function (req, res, next) {
   tripRepo.getById(req.params.id, function (data) {
     if (data) {
       // Attempt to update the data
@@ -117,7 +123,7 @@ router.put('/:id', function (req, res, next) {
   });
 })
 
-router.delete('/:id', function (req, res, next) {
+router.delete('/trips/:id', function (req, res, next) {
   tripRepo.getById(req.params.id, function (data) {
     if (data) {
       // Attempt to delete the data
@@ -146,7 +152,7 @@ router.delete('/:id', function (req, res, next) {
   });
 })
 
-router.patch('/:id', function (req, res, next) {
+router.patch('/trips/:id', function (req, res, next) {
   tripRepo.getById(req.params.id, function (data) {
     if (data) {
       // Attempt to update the data

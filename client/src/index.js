@@ -1,17 +1,19 @@
 import './normalize.css';
 import './index.css';
-import { getTrips, deleteTrips } from './api/tripsApi';
+import { getTrips, createTrips, deleteTrips } from './api/tripsApi';
 
 // Populate list of trips via API call.
-getTrips().then(result => {
+const populateTrips = result => {
     let tripBody = "";
 
+    // result.data.forEach needed for real API
     result.forEach(trip => {
         let expensesList = "";
         for (let i in trip.expenses) {
             expensesList+= `<li class="expense flex" id="expense-item">
                 <p>${trip.expenses[i].name}</p> 
                 <p>$${trip.expenses[i].price}</p>
+                <button data-id="${trip.expenses[i].id}" class="deleteExpense">x</button>
             </li>`
         }
         tripBody+= `<section id="trip-section-${trip.id}" class="trip column center flex">       
@@ -20,6 +22,7 @@ getTrips().then(result => {
                 ${expensesList}
             </ul>
             <button class="add-expense" id="expense-button-${trip.id}">Add Expense</button>
+            <button data-id="${trip.id}" class="deleteTrips">x</button>
             <div class="trip-total center flex">
                 <p>Trip Total</p>
                 <p class="total" id="trip-total-${trip.id}">$${trip.total}</p>
@@ -29,7 +32,7 @@ getTrips().then(result => {
 
     global.document.getElementById("trips").innerHTML = tripBody;
       
-    const deleteLinks = global.document.getElementsByClassName("deleteTrip");
+    const deleteLinks = global.document.getElementsByClassName("deleteTrips");
 
     // Must use array.from to create a real array from a DOM collection
     // getElementsByClassname only returns and "array like" object
@@ -38,27 +41,93 @@ getTrips().then(result => {
             const element = event.target;
             event.preventDefault();
             deleteTrips(element.attributes["data-id"].value);
-            const row = element.parentNode.parentNode;
-            row.parentNode.removeChild(row);
+            const trip = element.parentNode;
+            trip.parentNode.removeChild(trip);
         };
     });
+};
+
+getTrips().then(populateTrips);
+
+// Button to create new trip object and populate it with content
+const newTripButton = document.querySelector('.new-trip');
+// Counter for id generation
+let counter = 0;
+
+newTripButton.addEventListener('click', () => {
+    let tripName = prompt("Please name your trip");
+    if (tripName) {
+        const newTrip = {
+            "id": `${counter}`,
+            "name": `${tripName}`,
+            "expenses": [],
+            "total": 0
+        }
+        createTrips(newTrip);
+        getTrips().then(populateTrips);
+        // tripList.appendChild(sectionElement);
+        // const newTripExpenseButton = document.querySelector(`#expense-button-${newTrip.id}`);
+        // newTripExpenseButton.addEventListener('click', () => {
+        //     const newTripExpenseList = document.querySelector(`#expense-list-${newTrip.id}`);
+        //     let expenseName = prompt("Please name your expense");
+        //     if (expenseName) {
+        //         let expensePrice = parseFloat( prompt("Please enter the expense amount") );
+        //         if ( isNaN(expensePrice) ) {
+        //             alert("Please enter a numeric value.")
+        //         } else {
+        //             newTrip.addExpense(expenseName, expensePrice);
+        //             const newExpenseItemElement = getExpenseListItemElement(newTrip);
+        //             newTripExpenseList.appendChild(newExpenseItemElement);
+        //             const newTripTotalElement = document.querySelector(`#trip-total-${newTrip.id}`);
+        //             newTripTotalElement.textContent = newTrip.sumTotal().toLocaleString("en-US", {style:"currency", currency:"USD"});
+        //         }
+        //     } else {
+        //         alert("Please enter an expense name.")
+        //     }
+        // });
+        counter++;
+    } else {
+        alert("Please enter a trip name.")
+    }
 });
 
+// Hamburger Menu
+const hambugerMenuButton = document.querySelector('.hamburger');
+const navItems = document.querySelectorAll('.item');
+
+hambugerMenuButton.addEventListener('click', () => { 
+    for ( let i = 0; i < navItems.length; i++ ) {
+        if ( navItems[i].classList.contains("hidden") ) {
+            navItems[i].classList.remove("hidden");
+        } else {
+            navItems[i].classList.add("hidden");
+        }
+    }
+});
 
 // TODO: 
 // Calculate totals from JSON
-// Add trip delete
 // Add expense delete
-// Fix trip add
 // Fix expense add
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
+
 // Selectors
 const tripList = document.querySelector('.trip-list');
-const newTripButton = document.querySelector('.new-trip');
-const hambugerMenuButton = document.querySelector('.hamburger');
-const navItems = document.querySelectorAll('.item');
 
 // Counter for id generation
 let counter = 0;
@@ -94,24 +163,6 @@ class Expense {
     }
 }
 
-// Generate trip section element and contents
-function getTripSectionElement (trip) {
-    const section = document.createElement('section');
-    section.id = `trip-section-${trip.id}`;
-    section.className = "trip column center flex";
-    const tripHTMLContent = `        
-        <h2>${trip.name}</h2>
-        <ul class="expense-list column center flex" id="expense-list-${trip.id}">
-        </ul>
-        <button class="add-expense" id="expense-button-${trip.id}">Add Expense</button>
-        <div class="trip-total center flex">
-            <p>Trip Total</p>
-            <p class="total" id="trip-total-${trip.id}">$${trip.total}</p>
-        </div>
-    `;
-    section.innerHTML = tripHTMLContent;
-    return section
-}
 
 // Button to create new trip object and populate it with content
 newTripButton.addEventListener('click', () => {
@@ -159,14 +210,5 @@ function getExpenseListItemElement(trip) {
     return li;
 }
 
-// Hamburger Menu
-hambugerMenuButton.addEventListener('click', () => { 
-    for ( let i = 0; i < navItems.length; i++ ) {
-        if ( navItems[i].classList.contains("hidden") ) {
-            navItems[i].classList.remove("hidden");
-        } else {
-            navItems[i].classList.add("hidden");
-        }
-    }
-});
+
 */

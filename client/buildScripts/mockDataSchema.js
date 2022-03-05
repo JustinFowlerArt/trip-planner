@@ -24,6 +24,11 @@ export const schema = {
                 items: {
                   type: "object",
                   properties: {
+                    id: {
+                      type: "integer",
+          
+                      minimum: 1,
+                    },
                     name: {
                       type: "string",
                       faker: "commerce.productName",
@@ -33,7 +38,7 @@ export const schema = {
                       faker: "commerce.price",
                     },
                   },
-                  required: ["name", "price"],
+                  required: ["id", "name", "price"],
                 },
             },
             total: {

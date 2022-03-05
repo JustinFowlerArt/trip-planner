@@ -1,6 +1,6 @@
 export default function getBaseUrl() {
     // Note: Replace the production Heroku URL below with your URL.
-    return getQueryStringParameterByName('useMockApi') ? 'http://localhost:3001/' : 'http://localhost:3001/';
+    return getQueryStringParameterByName('useMockApi') ? 'http://localhost:3001/' : 'http://localhost:5000/api/';
   }
   
   function getQueryStringParameterByName(name, url) {

@@ -1,1 +1,145 @@
-{"trips":[{"id":66798679,"name":"Lesotho","expenses":[{"name":"Fantastic Wooden Bacon","price":4},{"name":"Intelligent Steel Hat","price":650},{"name":"Handcrafted Steel Pants","price":6}],"total":993},{"id":77498457,"name":"Qatar","expenses":[{"name":"Tasty Concrete Mouse","price":18},{"name":"Rustic Soft Bike","price":893},{"name":"Fantastic Metal Tuna","price":765}],"total":907},{"id":60097682,"name":"Tanzania","expenses":[{"name":"Refined Fresh Car","price":573},{"name":"Intelligent Plastic Tuna","price":492},{"name":"Unbranded Metal Fish","price":162},{"name":"Handcrafted Rubber Towels","price":715},{"name":"Tasty Plastic Ball","price":825}],"total":441},{"id":26009675,"name":"Tajikistan","expenses":[{"name":"Licensed Soft Car","price":719},{"name":"Unbranded Cotton Salad","price":923},{"name":"Handmade Soft Mouse","price":746},{"name":"Refined Soft Pizza","price":498},{"name":"Generic Frozen Bacon","price":95}],"total":859}]}
+{
+  "trips": [
+    {
+      "id": 30170491,
+      "name": "Svalbard & Jan Mayen Islands",
+      "expenses": [
+        {
+          "id": 53081558,
+          "name": "Rustic Granite Shirt",
+          "price": 190
+        },
+        {
+          "id": 81864267,
+          "name": "Generic Soft Chicken",
+          "price": 715
+        },
+        {
+          "id": 91459152,
+          "name": "Rustic Concrete Chicken",
+          "price": 395
+        },
+        {
+          "id": 18078262,
+          "name": "Generic Fresh Pizza",
+          "price": 887
+        }
+      ],
+      "total": 983
+    },
+    {
+      "id": 97013801,
+      "name": "Antigua and Barbuda",
+      "expenses": [
+        {
+          "id": 79184827,
+          "name": "Gorgeous Soft Shoes",
+          "price": 300
+        },
+        {
+          "id": 98698528,
+          "name": "Incredible Cotton Salad",
+          "price": 36
+        },
+        {
+          "id": 88291165,
+          "name": "Tasty Soft Mouse",
+          "price": 792
+        }
+      ],
+      "total": 794
+    },
+    {
+      "id": 34475066,
+      "name": "Cambodia",
+      "expenses": [
+        {
+          "id": 71281451,
+          "name": "Handcrafted Plastic Computer",
+          "price": 798
+        },
+        {
+          "id": 10508645,
+          "name": "Tasty Concrete Chicken",
+          "price": 927
+        },
+        {
+          "id": 72843327,
+          "name": "Practical Frozen Chicken",
+          "price": 335
+        },
+        {
+          "id": 37858913,
+          "name": "Unbranded Steel Chips",
+          "price": 49
+        }
+      ],
+      "total": 724
+    },
+    {
+      "id": 9927756,
+      "name": "Portugal",
+      "expenses": [
+        {
+          "id": 28988312,
+          "name": "Licensed Wooden Chair",
+          "price": 697
+        },
+        {
+          "id": 14667205,
+          "name": "Sleek Fresh Ball",
+          "price": 787
+        },
+        {
+          "id": 86076016,
+          "name": "Gorgeous Concrete Pizza",
+          "price": 945
+        },
+        {
+          "id": 22832718,
+          "name": "Incredible Soft Car",
+          "price": 500
+        },
+        {
+          "id": 15678940,
+          "name": "Small Metal Chicken",
+          "price": 274
+        }
+      ],
+      "total": 481
+    },
+    {
+      "id": 44972562,
+      "name": "Falkland Islands (Malvinas)",
+      "expenses": [
+        {
+          "id": 4520925,
+          "name": "Refined Steel Hat",
+          "price": 601
+        },
+        {
+          "id": 19035798,
+          "name": "Fantastic Concrete Ball",
+          "price": 102
+        },
+        {
+          "id": 15040146,
+          "name": "Unbranded Concrete Table",
+          "price": 543
+        },
+        {
+          "id": 10917859,
+          "name": "Unbranded Metal Sausages",
+          "price": 143
+        }
+      ],
+      "total": 384
+    },
+    {
+      "id": "0",
+      "name": "Test",
+      "expenses": [],
+      "total": 0
+    }
+  ]
+}
