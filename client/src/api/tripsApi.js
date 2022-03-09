@@ -7,8 +7,16 @@ export function getTrips() {
     return get("trips");
 }
 
+export function getSingleTrip(id) {
+    return get(`trips/${id}`);
+}
+
 export function createTrips(data) {
-    return create("trips", data);
+    return put("trips", data);
+}
+
+export function updateTrip(id, data) {
+    return patch(`trips/${id}`, data);
 }
 
 export function deleteTrips(id) {
@@ -28,9 +36,19 @@ function del(url) {
     return fetch(request).then(onSuccess, onError);
 }
 
-function create(url, data) {
+function put(url, data) {
     const request = new Request(baseUrl + url, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+
+    return fetch(request).then(onSuccess, onError);
+}
+
+function patch(url, data) {
+    const request = new Request(baseUrl + url, {
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });

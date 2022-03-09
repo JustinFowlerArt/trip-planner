@@ -155,6 +155,7 @@ router.delete('/trips/:id', function (req, res, next) {
 router.patch('/trips/:id', function (req, res, next) {
   tripRepo.getById(req.params.id, function (data) {
     if (data) {
+      console.log(data);
       // Attempt to update the data
       tripRepo.update(req.body, req.params.id, function (data) {
         res.status(200).json({
