@@ -28,8 +28,8 @@ h2 {
 }
 
 li > p {
-    margin: 0;
-    padding: 0;
+    margin: auto;
+    padding: .5rem;
 }
 
 i {
@@ -82,7 +82,7 @@ i {
 .hamburger {
     position: absolute;
     right: 2rem;
-    top: 2rem;
+    top: 1.5rem;
     font-size: 2rem;
 }
 
@@ -122,17 +122,7 @@ i {
     padding: .5rem;
     border-radius: 1rem;
     background-color: #0000b5;
-}
-
-.new-trip {
-    margin: 1rem;
-    padding: 1rem;
-    border-radius: 1rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    border: none;
-    color: white;
-    background-color: #0000b5;
+    position: relative;
 }
 
 .expense {
@@ -144,16 +134,44 @@ i {
     background-color: rgb(71, 142, 189);
 }
 
+.new-trip,
 .add-expense {
     color: white;
     border: 1px solid white;
 }
 
+.new-trip,
 .add-expense,
 .total {
     margin: .7rem;
     padding: .7rem;
     border-radius: 1rem;
+    background-color: rgb(71, 142, 189);
+}
+
+.form-label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: .5rem;
+    color: white;
+}
+
+.delete-trip {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    padding: 0 .5rem;
+}
+
+.delete-expense {
+    margin: auto;
+}
+
+.delete-trip,
+.delete-expense {
+    color: white;
+    border: 1px solid white;
     background-color: rgb(71, 142, 189);
 }
 
@@ -200,6 +218,11 @@ i {
 }
 
 @media only screen and (min-width: 1024px) {
+    li > p {
+        margin: 0;
+        padding: 0;
+    }
+        
     .main {
         font-size: 1.1rem;
     }
@@ -219,19 +242,21 @@ i {
         
     }
 
-    .new-trip {
-        padding: 1.5rem;
-        font-size: 1.6rem;
-    }
-
     .expense {
         width: 20rem;
         margin: .5rem 1.5rem;
         padding: .7rem 1rem;
     }
 
+    .new-trip,
     .add-expense {
         padding: 1rem;
+    }
+
+    .delete-expense {
+        position: absolute;
+        right: .5rem;
+        margin: 0;
     }
 
     .trip-total {

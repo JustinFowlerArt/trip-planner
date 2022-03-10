@@ -55,6 +55,7 @@ function getTripSectionElement (trip) {
         <ul class="expense-list column center flex" id="expense-list-${trip.id}">
         </ul>
         <button class="add-expense" id="expense-button-${trip.id}">Add Expense</button>
+        <button data-id="${trip.id}" class="delete-trip">x</button>
         <div class="trip-total center flex">
             <p>Trip Total</p>
             <p class="total" id="trip-total-${trip.id}">$${trip.total}</p>
@@ -73,24 +74,50 @@ function getExpenseListItemElement(trip) {
         li.innerHTML = `                
             <p>${trip.expenses[i].name}</p> 
             <p>${trip.expenses[i].price.toLocaleString("en-US", {style:"currency", currency:"USD"})}</p>
-        `
-        ;
+            <button data-id="${trip.expenses[i].id}" class="delete-expense">x</button>
+        `;
     }
     return li;
 }
 
+// Delete trips and trip expenses
+function deleteTrip(trip) {
+    const deleteTripsLink = global.document.getElementsByClassName("delete-trip");
+    Array.from(deleteTripsLink, trip => { removeElement(trip) });
+    removeElement(trip);
+}
+
+// Delete expenses
+function deleteExpense(trip) {
+    const deleteExpenseLink = global.document.getElementsByClassName("delete-expense");
+    Array.from(deleteExpenseLink, trip => { removeElement(trip) });
+    removeElement(trip);
+}
+
+// Delete element
+function removeElement(link) {
+    link.onclick = function(event) {
+        const element = event.target;
+        event.preventDefault();
+        const expense = element.parentNode;
+        expense.parentNode.removeChild(expense);
+    };
+}
+
 // Button to create new trip object and populate it with content
-newTripButton.addEventListener('click', () => {
-    let tripName = prompt("Please name your trip");
+newTripButton.addEventListener('click', (event, trip) => {
+    let tripName = document.querySelector("#new-trip").value;
+    const tripForm = document.querySelector("#trip-form");
     if (tripName) {
+        event.preventDefault();
         const newTrip = new Trip(tripName)
         const sectionElement = getTripSectionElement(newTrip);
         tripList.appendChild(sectionElement);
         expenseButton(newTrip)
         tripCounter++;
-    } else {
-        alert("Please enter a trip name.")
+        tripForm.reset();
     }
+    deleteTrip(trip);
 });
 
 // Button to create add new expenses
@@ -113,7 +140,9 @@ function expenseButton(trip) {
         } else {
             alert("Please enter an expense name.")
         }
+        deleteExpense(trip);
     });
+    deleteExpense(trip);
 }
 
 // Hamburger Menu
@@ -142,13 +171,19 @@ getTrips().then(result => {
         }
         const newTripTotalElement = document.querySelector(`#trip-total-${newTrip.id}`);
         newTripTotalElement.textContent = newTrip.sumTotal().toLocaleString("en-US", {style:"currency", currency:"USD"});
-        expenseButton(newTrip)
+        expenseButton(newTrip);
         tripCounter++;
     });
+    deleteTrip(result);
 });
+
+
+
+
 
 // TODO: 
 // Connect to API
+
 
 
 
