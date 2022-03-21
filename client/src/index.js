@@ -9,7 +9,7 @@ const newTripButton = document.querySelector('.new-trip');
 const hambugerMenuButton = document.querySelector('.hamburger');
 const navItems = document.querySelectorAll('.item');
 
-// Counter for id generation
+// Counters for id generation
 let tripCounter = 0;
 let expenseCounter = 0;
 
@@ -18,7 +18,6 @@ class Trip {
     constructor(name) {
         this.name = name;
         this.expenses = [];
-        this.total = 0;
         this.id = tripCounter;
     }
 
@@ -27,12 +26,26 @@ class Trip {
         this.expenses.push( new Expense(name, price) );
     }
 
+    removeExpense(id = 1) {
+        // this.expenses = this.expenses.filter(e => e.id !== id);
+
+        let found = this.expenses.find(e => e.id = id);
+        console.log(found);
+        // let index = this.expenses.indexOf(found);
+        // console.log(index);
+        // if (index > -1) {
+        //     this.expenses.splice(index, 1);
+        // }
+        // updateTotal(this);
+        // console.log(this.expenses);
+    }
+
     // Calculate total of trip expenses
-    sumTotal() {
-        this.total = 0;
+    get total() {
+        let total = 0;
         for ( let i = 0; i < this.expenses.length; i++) {
-            this.total += this.expenses[i].price;
-        } return this.total;
+            total += this.expenses[i].price;
+        } return total;
     }
 }
 
@@ -72,75 +85,106 @@ function getExpenseListItemElement(trip) {
     for (let i = 0; i < trip.expenses.length; i++ ) {
         li.id = `expense-item-${trip.expenses[i].id}`;
         li.innerHTML = `                
-            <p>${trip.expenses[i].name}</p> 
+            <p>${trip.expenses[i].name}.</p> 
             <p>${trip.expenses[i].price.toLocaleString("en-US", {style:"currency", currency:"USD"})}</p>
             <button data-id="${trip.expenses[i].id}" class="delete-expense">x</button>
         `;
     }
+    li.children[0].addEventListener('click', () => {
+        let newName = prompt("Enter a new name")
+        li.children[0].textContent = `${newName}`;
+    });
+    li.children[1].addEventListener('click', () => {
+        let newPrice = parseFloat(prompt("Enter a new price")).toLocaleString("en-US", {style:"currency", currency:"USD"});
+        li.children[1].textContent = `${newPrice}`;
+    });
     return li;
 }
 
-// Delete trips and trip expenses
-function deleteTrip(trip) {
+// Generate expense form
+function getTripExpenseForm (trip) {
+    const form = document.createElement("form");
+    form.className = "trip column center flex";
+    form.id = `trip-expense-form-${trip.id}`;
+    form.innerHTML = `
+        <label class="form-label" for="expense-name">Expense Name</label><br>
+        <input type="text" id="expense-name-${trip.id}" name="expense-name" placeholder="Airfare" required><br>
+        <label class="form-label" for="expense-price">Expense Price</label><br>
+        <input type="number" id="expense-price-${trip.id}" name="expense-price" placeholder="$199" required><br>
+        <input class="add-expense" id="submit-expense-${trip.id}" type="submit" value="Add Expense">
+        `;
+    return form;
+}
+
+// Delete trips expenses
+function deleteTrip() {
     const deleteTripsLink = global.document.getElementsByClassName("delete-trip");
-    Array.from(deleteTripsLink, trip => { removeElement(trip) });
-    removeElement(trip);
+    Array.from(deleteTripsLink, element => { element.addEventListener('click', (event) => {
+        removeElement(event);
+        });
+    });
 }
 
 // Delete expenses
 function deleteExpense(trip) {
     const deleteExpenseLink = global.document.getElementsByClassName("delete-expense");
-    Array.from(deleteExpenseLink, trip => { removeElement(trip) });
-    removeElement(trip);
+    Array.from(deleteExpenseLink, e => { e.addEventListener('click', (event) => {
+            removeElement(event);
+            trip.removeExpense(trip);
+        });
+    });
 }
 
 // Delete element
-function removeElement(link) {
-    link.onclick = function(event) {
-        const element = event.target;
-        event.preventDefault();
-        const expense = element.parentNode;
+function removeElement(event) {
+    const element = event.target;
+    event.preventDefault();
+    const expense = element.parentNode;
+    if (expense.parentNode) {
         expense.parentNode.removeChild(expense);
-    };
+    }
 }
 
 // Button to create new trip object and populate it with content
 newTripButton.addEventListener('click', (event, trip) => {
-    let tripName = document.querySelector("#new-trip").value;
     const tripForm = document.querySelector("#trip-form");
+    let tripName = document.querySelector("#new-trip").value;
     if (tripName) {
         event.preventDefault();
-        const newTrip = new Trip(tripName)
+        const newTrip = new Trip(tripName);
         const sectionElement = getTripSectionElement(newTrip);
         tripList.appendChild(sectionElement);
-        expenseButton(newTrip)
+        expenseButton(newTrip);
         tripCounter++;
         tripForm.reset();
+        deleteTrip(trip);
     }
-    deleteTrip(trip);
 });
 
 // Button to create add new expenses
 function expenseButton(trip) {
     const newTripExpenseButton = document.querySelector(`#expense-button-${trip.id}`);
     newTripExpenseButton.addEventListener('click', () => {
+        const newExpenseForm = getTripExpenseForm(trip);
         const newTripExpenseList = document.querySelector(`#expense-list-${trip.id}`);
-        let expenseName = prompt("Please name your expense");
-        if (expenseName) {
-            let expensePrice = parseFloat( prompt("Please enter the expense amount") );
-            if ( isNaN(expensePrice) ) {
-                alert("Please enter a numeric value.")
-            } else {
-                trip.addExpense(expenseName, expensePrice);
+        newTripExpenseList.appendChild(newExpenseForm);
+        newTripExpenseButton.classList.add("hidden");
+        const submitExpense = document.querySelector(`#submit-expense-${trip.id}`);
+        submitExpense.addEventListener('click', (event) => {
+            const expenseForm = document.querySelector(`#trip-expense-form-${trip.id}`);
+            let expenseName = document.querySelector(`#expense-name-${trip.id}`).value;
+            let expensePrice = document.querySelector(`#expense-price-${trip.id}`).value;
+            if (expenseName && expensePrice) {
+                event.preventDefault();
+                trip.addExpense(expenseName, parseFloat(expensePrice));
                 const newExpenseItemElement = getExpenseListItemElement(trip);
                 newTripExpenseList.appendChild(newExpenseItemElement);
-                const newTripTotalElement = document.querySelector(`#trip-total-${trip.id}`);
-                newTripTotalElement.textContent = trip.sumTotal().toLocaleString("en-US", {style:"currency", currency:"USD"});
+                updateTotal(trip);
+                expenseForm.remove();
+                newTripExpenseButton.classList.remove("hidden");
+                deleteExpense(trip);
             }
-        } else {
-            alert("Please enter an expense name.")
-        }
-        deleteExpense(trip);
+        });
     });
     deleteExpense(trip);
 }
@@ -169,19 +213,23 @@ getTrips().then(result => {
             newTripExpenseList.appendChild(newExpenseItemElement);
             expenseCounter++;
         }
-        const newTripTotalElement = document.querySelector(`#trip-total-${newTrip.id}`);
-        newTripTotalElement.textContent = newTrip.sumTotal().toLocaleString("en-US", {style:"currency", currency:"USD"});
+        updateTotal(newTrip);
         expenseButton(newTrip);
         tripCounter++;
     });
     deleteTrip(result);
 });
 
-
-
-
+// Trip Total Helper
+function updateTotal(trip) {
+    const newTripTotalElement = document.querySelector(`#trip-total-${trip.id}`);
+    newTripTotalElement.textContent = trip.total.toLocaleString("en-US", {style:"currency", currency:"USD"});
+}
 
 // TODO: 
+// Delete correct expense
+// Delete trip object
+// onClick Errors
 // Connect to API
 
 
@@ -198,7 +246,8 @@ getTrips().then(result => {
 
 
 
-/*// Populate list of trips via API call.
+/*
+// Populate list of trips via API call.
 const populateTrips = result => {
     let tripBody = "";
 
@@ -327,4 +376,5 @@ hambugerMenuButton.addEventListener('click', () => {
             navItems[i].classList.add("hidden");
         }
     }
-});*/
+});
+*/

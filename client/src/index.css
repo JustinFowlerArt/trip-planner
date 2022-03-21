@@ -36,7 +36,6 @@ i {
     color: white;
 }
 
-
 /* ----- Ckass Styles ----- */
 .flex {
     display: flex;
@@ -236,8 +235,7 @@ i {
     }
 
     .trip {
-        min-width: 350px;
-        max-width: 450px;
+        width: 100%;
         padding: 1rem;
         
     }
@@ -254,8 +252,6 @@ i {
     }
 
     .delete-expense {
-        position: absolute;
-        right: .5rem;
         margin: 0;
     }
 
