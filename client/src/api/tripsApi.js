@@ -3,32 +3,12 @@ import getBaseUrl from "./baseUrl";
 
 const baseUrl = getBaseUrl();
 
-export function getTrips() {
-    return get("trips");
-}
-
-export function getSingleTrip(id) {
-    return get(`trips/${id}`);
-}
-
-export function createTrips(data) {
-    return put("trips", data);
-}
-
-export function updateTrip(id, data) {
-    return patch(`trips/${id}`, data);
-}
-
-export function deleteTrips(id) {
-    return del(`trips/${id}`);
-}
-
-function get(url) {
+function fetchData(url) {
     return fetch(baseUrl + url).then(onSuccess, onError);
 }
 
 // Can't call func delete since reserved word.
-function del(url) {
+function deleteData(url) {
     const request = new Request(baseUrl + url, {
         method: 'DELETE'
     });
@@ -36,7 +16,7 @@ function del(url) {
     return fetch(request).then(onSuccess, onError);
 }
 
-function put(url, data) {
+function postData(url, data) {
     const request = new Request(baseUrl + url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -46,7 +26,7 @@ function put(url, data) {
     return fetch(request).then(onSuccess, onError);
 }
 
-function patch(url, data) {
+function patchData(url, data) {
     const request = new Request(baseUrl + url, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -62,4 +42,24 @@ function onSuccess(response) {
 
 function onError(error) {
     console.log(error); // eslint-disable-line no-console
+}
+
+export function getTrips() {
+    return fetchData("trips");
+}
+
+export function getSingleTrip(id) {
+    return fetchData(`trips/${id}`);
+}
+
+export function createTrip(data) {
+    return postData("trips", data);
+}
+
+export function updateTrip(id, data) {
+    return patchData(`trips/${id}`, data);
+}
+
+export function deleteTrip(id) {
+    return deleteData(`trips/${id}`);
 }

@@ -212,7 +212,7 @@ i {
     .main,
     .trip-list {
         flex-direction: row;
-        align-items: baseline;
+        align-items: flex-start;
     }
 }
 
