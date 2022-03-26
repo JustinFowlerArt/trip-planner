@@ -1,6 +1,6 @@
 import './normalize.css';
 import './index.css';
-import { getTrips, } from './api/tripsApi';
+import { getTrips, createTrip } from './api/tripsApi';
 import { TripManager } from './modules/tripManager.module';
 
 // Singleton pattern for fun.
@@ -26,11 +26,18 @@ getTrips().then(_result => {
 // Button to create new trip object and populate it with content
 const newTripButton = document.querySelector('.new-trip');
 newTripButton.addEventListener('click', (event) => {
-    const tripForm = document.querySelector("#trip-form");
-    let _tripName = document.querySelector("#new-trip").value;
+    const tripForm = document.querySelector('#trip-form');
+    let _tripName = document.querySelector('#new-trip').value;
     if (_tripName) {
         event.preventDefault();
-        TripManager.addTrip(_tripName);
+        const newTrip = TripManager.addTrip(_tripName);
+        createTrip(
+            {
+                "id": newTrip.id,
+                "name": newTrip.name,
+                "expenses": newTrip.expenses
+            }
+        );
         tripForm.reset();
     }
 });
@@ -39,14 +46,11 @@ newTripButton.addEventListener('click', (event) => {
 const hambugerMenuButton = document.querySelector('.hamburger');
 hambugerMenuButton.addEventListener('click', () => { 
     const navItems = document.querySelectorAll('.item');
-    for ( let i = 0; i < navItems.length; i++ ) {
-        if ( navItems[i].classList.contains("hidden") ) {
-            navItems[i].classList.remove("hidden");
-        } else {
-            navItems[i].classList.add("hidden");
-        }
-    }
+    navItems.forEach(i => i.classList.toggle('hidden'));
 });
 
 // TODO: 
-// Connect to API
+// Prevent duplicate trip IDs
+// Modify trip names and expenses names and prices
+// Modify API patch request to not send expense.template property
+// Separate API into own branch and deploy to Heroku

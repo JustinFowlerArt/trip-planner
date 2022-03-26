@@ -7,15 +7,6 @@ function fetchData(url) {
     return fetch(baseUrl + url).then(onSuccess, onError);
 }
 
-// Can't call func delete since reserved word.
-function deleteData(url) {
-    const request = new Request(baseUrl + url, {
-        method: 'DELETE'
-    });
-
-    return fetch(request).then(onSuccess, onError);
-}
-
 function postData(url, data) {
     const request = new Request(baseUrl + url, {
         method: 'POST',
@@ -36,6 +27,15 @@ function patchData(url, data) {
     return fetch(request).then(onSuccess, onError);
 }
 
+// Can't call func delete since reserved word.
+function deleteData(url) {
+    const request = new Request(baseUrl + url, {
+        method: 'DELETE'
+    });
+
+    return fetch(request).then(onSuccess, onError);
+}
+
 function onSuccess(response) {
     return response.json();
 }
@@ -48,6 +48,7 @@ export function getTrips() {
     return fetchData("trips");
 }
 
+// No being used currently. Can be used for search later.
 export function getSingleTrip(id) {
     return fetchData(`trips/${id}`);
 }

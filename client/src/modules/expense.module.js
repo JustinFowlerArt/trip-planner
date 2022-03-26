@@ -5,7 +5,7 @@ export class Expense {
         // Any args not passed in will have default values. Args that are defined override defaults.
         _args = {
             id: 0,
-            name: "New Expense",
+            name: 'New Expense',
             price: 0,
             ..._args,
         };
@@ -27,31 +27,31 @@ export class Expense {
     }
 
     generateExpenseTemplate() {
-        const templateContainer = document.createElement("li");
+        const templateContainer = document.createElement('li');
         templateContainer.id = `expense-item-${this.id}`;
-        templateContainer.className = "expense flex";
+        templateContainer.className = 'expense flex';
         const templateBody = `
-            <p>${this.name}.</p>
-            <p>${this.price.toLocaleString("en-US", {style:"currency", currency:"USD"})}</p>
-            <button id="${this.deleteExpenseButtonId}" class="delete-expense">x</button>
+            <p>${this.name}</p>
+            <p>${this.price.toLocaleString('en-US', {style:'currency', currency:'USD'})}</p>
+            <button id='${this.deleteExpenseButtonId}' class='delete-expense'>x</button>
         `;
         templateContainer.innerHTML = templateBody;
         this.template = templateContainer;
 
         // TODO: Come back to this.
         // li.children[0].addEventListener('click', () => {
-        //     let newName = prompt("Enter a new name")
+        //     let newName = prompt('Enter a new name')
         //     li.children[0].textContent = `${newName}`;
         // });
         // li.children[1].addEventListener('click', () => {
-        //     let newPrice = parseFloat(prompt("Enter a new price")).toLocaleString("en-US", {style:"currency", currency:"USD"});
+        //     let newPrice = parseFloat(prompt('Enter a new price')).toLocaleString('en-US', {style:'currency', currency:'USD'});
         //     li.children[1].textContent = `${newPrice}`;
         // });
         // return li;
     }
 
     registerDeleteExpenseEvent(_trip) {
-        // Need to do this because "this" context changes inside of the addEventListener function.
+        // Need to do this because 'this' context changes inside of the addEventListener function.
         const self = this;
         const deleteButton = this.template.querySelector(`#${this.deleteExpenseButtonId}`);
         deleteButton.addEventListener('click', () => {

@@ -12,3 +12,7 @@ This project is a trip planning resource that allows you to create a list of pos
 - Create an array, dictionary or list, populate it with multiple values, retrieve at least one value, and use or display it in your application
 - Create and use a function that accepts two or more values (parameters), calculates or determines a new value based on those inputs, and returns a new value
 - Create a web server with at least one route and connect to it from your application using ExpressJS
+- Retrieve data from an external API and display data in your app (such as with fetch() or with AJAX)
+- Post to an external API and show that it has saved/persisted
+- Create a form and save the values (on click of Submit button) to an external file
+- Implement a log that records errors, invalid inputs, or other important events and writes them to a text file (API errors)

@@ -23,7 +23,7 @@ export class TripManager {
         manager.template.appendChild(newTrip.template);
         manager.roster[manager.tripCounter] = newTrip;
         manager.tripCounter++;
-
+        
         return newTrip;
     }
 
