@@ -117,6 +117,7 @@ i {
 
 .trip {
     max-width: 350px;
+    width: 300px;
     margin: 1rem;
     padding: .5rem;
     border-radius: 1rem;
@@ -218,8 +219,7 @@ i {
 
 @media only screen and (min-width: 1024px) {
     li > p {
-        margin: 0;
-        padding: 0;
+        padding: 0 .5rem;
     }
         
     .main {
@@ -252,7 +252,7 @@ i {
     }
 
     .delete-expense {
-        margin: 0;
+        margin: auto 0;
     }
 
     .trip-total {

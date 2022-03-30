@@ -44,7 +44,7 @@ export const schema = {
                     },
                 },
               },
-              required: ["id", "name", "expenses", "total"],
+              required: ["id", "name", "expenses"],
             },
           },
         },
