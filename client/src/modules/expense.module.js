@@ -29,11 +29,13 @@ export class Expense {
     generateExpenseTemplate() {
         const templateContainer = document.createElement('li');
         templateContainer.id = `expense-item-${this.id}`;
-        templateContainer.className = 'expense flex';
+        templateContainer.className = 'flex justify-between primary-bg-color rounded-xl p-4 mx-1 my-2';
         const templateBody = `
             <p>${this.name}</p>
-            <p>${this.price.toLocaleString('en-US', {style:'currency', currency:'USD'})}</p>
-            <button id='${this.deleteExpenseButtonId}' class='delete-expense'>x</button>
+            <div class="flex items-center">
+                <p class="mx-3">${this.price.toLocaleString('en-US', {style:'currency', currency:'USD'})}</p>
+                <button id='${this.deleteExpenseButtonId}' class='primary-bg-color border border-white m-auto px-1'>x</button>
+            </div>
         `;
         templateContainer.innerHTML = templateBody;
         this.template = templateContainer;

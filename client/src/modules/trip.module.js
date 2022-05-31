@@ -80,16 +80,16 @@ export class Trip {
     generateTripTemplate() {
         const templateContainer = document.createElement('section');
         templateContainer.id = `trip-section-${this.id}`;
-        templateContainer.className = 'trip column center flex';
-        const templateBody = `        
-            <h2 id='trip-name-${this.id}'>${this.name}</h2>
-            <ul class='expense-list column center flex' id='${this.expenseListId}'>
+        templateContainer.className = 'relative flex flex-col h-full flex-none justify-start w-[272px] items-center secondary-bg-color rounded-xl m-2 p-2';
+        const templateBody = `
+            <h2 class='m-2' id='trip-name-${this.id}'>${this.name}</h2>
+            <ul class='flex flex-col expense-list overflow-y-auto overflow-x-hidden overscroll-contain mb-3' id='${this.expenseListId}'>
             </ul>
-            <button class='add-expense' id='${this.addExpenseButtonId}'>Add Expense</button>
-            <button class='delete-trip' id='${this.deleteTripButtonId}'>x</button>
-            <div class='trip-total center flex'>
+            <button class='primary-bg-color rounded-2xl p-3 m-3 border border-white' id='${this.addExpenseButtonId}'>Add Expense</button>
+            <button class='primary-bg-color absolute top-4 right-4 px-1 border border-white' id='${this.deleteTripButtonId}'>x</button>
+            <div class='flex justify-between items-center w-full px-6 my-3'>
                 <p>Trip Total</p>
-                <p class='total' id='${this.tripTotalId}'>$${this.total}</p>
+                <p class='primary-bg-color rounded-2xl p-3' id='${this.tripTotalId}'>$${this.total}</p>
             </div>
         `;
         templateContainer.innerHTML = templateBody;
@@ -99,13 +99,13 @@ export class Trip {
     generateFormTemplate() {
         const formTemplate = document.createElement('form');
         formTemplate.id = `trip-expense-form-${this.id}`;
-        formTemplate.className = 'trip column center flex';
+        formTemplate.className = 'flex flex-col items-center';
         const formBody = `
-            <label class='form-label' for='expense-name'>Expense Name</label><br>
-            <input type='text' id='expense-name-${this.id}' name='expense-name' placeholder='Airfare' required><br>
-            <label class='form-label' for='expense-price'>Expense Price</label><br>
-            <input type='number' id='expense-price-${this.id}' name='expense-price' placeholder='$199' required><br>
-            <input class='add-expense' id='submit-expense-${this.id}' type='submit' value='Add Expense'>
+            <label for='expense-name'>Expense Name</label>
+            <input class='my-2 px-2 secondary-color' type='text' id='expense-name-${this.id}' name='expense-name' placeholder='Airfare' required>
+            <label for='expense-price'>Expense Price</label>
+            <input class='my-2 px-2 secondary-color' type='number' id='expense-price-${this.id}' name='expense-price' placeholder='$199' required>
+            <input class='primary-bg-color rounded-2xl p-3 m-3 border border-white' id='submit-expense-${this.id}' type='submit' value='Add Expense'>
         `;
         formTemplate.innerHTML = formBody;
         this.expenseForm = formTemplate;
@@ -114,10 +114,10 @@ export class Trip {
     generateRenameTemplate() {
         const formTemplate = document.createElement('form');
         formTemplate.id = `trip-rename-form-${this.id}`;
-        formTemplate.className = 'trip column center flex';
+        formTemplate.className = 'flex flex-col items-center';
         const formBody = `
-            <label class='form-label' for='trip-name'>${this.name}</label><br>
-            <input type='text' id='new-name-${this.id}' name='trip-name' placeholder='Trip Name' required><br>
+            <label for='trip-name'>${this.name}</label><br>
+            <input class='my-2 px-2 secondary-color' type='text' id='new-name-${this.id}' name='trip-name' placeholder='Trip Name' required><br>
             <input class='add-expense' id='rename-button-${this.id}' type='submit' value='Update'>
         `
         formTemplate.innerHTML = formBody;

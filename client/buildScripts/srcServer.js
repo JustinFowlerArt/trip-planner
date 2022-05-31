@@ -18,15 +18,6 @@ app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "../src/index.html"));
 });
 
-app.get("/trips", function(req, res) {
-    //Hard coding for simplicity. Pretend this hits a real database
-    res.json([
-        { "id": 1, "name": "Cancun", "expenses": [], "total": 0 },
-        { "id": 2, "name": "Vancouver", "expenses": [], "total": 0 },
-        { "id": 3, "name": "Hawaii", "expenses": [], "total": 0 }
-    ]);
-});
-
 app.listen(port, function(err) {
     if (err) {
         console.log(err);

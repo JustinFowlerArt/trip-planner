@@ -21,8 +21,8 @@ export const schema = {
                 },
                 expenses: {
                   type: "array",
-                  minItems: 3,
-                  maxItems: 5,
+                  minItems: 4,
+                  maxItems: 8,
                     items: {
                       type: "object",
                       properties: {
