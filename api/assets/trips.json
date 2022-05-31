@@ -1,0 +1,1 @@
+[{"id":0,"name":"Cancun","expenses":[{"id":0,"name":"Airfare","price":100},{"id":1,"name":"Hotel","price":400}]},{"id":1,"name":"Vancouver","expenses":[{"id":0,"name":"Airfare","price":300},{"id":1,"name":"Hotel","price":250}]},{"id":2,"name":"Rome","expenses":[{"id":0,"name":"Airfare","price":500},{"id":1,"name":"Hotel","price":150},{"id":2,"name":"Food","price":75}]}]
