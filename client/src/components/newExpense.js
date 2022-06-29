@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function NewExpense({ newExpense, handleSubmitExpense }) {
+export default function NewExpense({ /*newExpense*/ handleSubmitExpense }) {
   return (
     <form className='flex flex-col items-center' onSubmit={handleSubmitExpense}>
       <label htmlFor='expense-name'>Expense Name</label>

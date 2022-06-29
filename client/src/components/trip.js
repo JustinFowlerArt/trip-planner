@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Expense from './expense';
-import NewExpense from './newExpense';
+// import NewExpense from './newExpense';
 
 export default function Trip({ trip, handleDeleteTrip }) {
   // setTrips(trip.expenses.filter((expenseItem) => expenseItem.id !== id))
@@ -53,9 +53,9 @@ export default function Trip({ trip, handleDeleteTrip }) {
     : 0;
 
   return (
-    <section className='relative flex flex-col h-full flex-none justify-start w-[272px] items-center secondary-bg-color rounded-xl m-2 p-2'>
+    <section className='relative flex flex-col h-full min-h-[500px] flex-none justify-start w-[272px] items-center secondary-bg-color rounded-xl m-2 p-2'>
       <h2 className='m-2'>{trip.name}</h2>
-      <ul className='flex flex-col expense-list overflow-y-auto overflow-x-hidden overscroll-contain mb-3'>
+      <ul className='flex flex-col expense-list min-h-[300px] overflow-y-auto overflow-x-hidden overscroll-contain mb-3'>
         {trip.expenses?.map(expense => (
           <Expense key={expense.id} expense={expense} />
         ))}

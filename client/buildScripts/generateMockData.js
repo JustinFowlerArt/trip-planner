@@ -6,19 +6,19 @@
 
 /* eslint-disable no-console */
 
-const { generate, extend } = require("json-schema-faker");
-const { schema } = require("./mockDataSchema");
-const fs = require("fs");
-const chalk = require("chalk");
+import { generate, extend } from 'json-schema-faker';
+import { schema } from './mockDataSchema';
+import * as fs from 'fs';
+import chalk from 'chalk';
 
 // Extend JSF with the fake libs you want to use.
-extend("faker", () => require("faker"));
+extend('faker', () => require('faker'));
 const json = JSON.stringify(generate(schema));
 
-fs.writeFile("./src/api/db.json", json, function (err) {
-    if (err) {
-        return console.log(chalk.red(err));
-    } else {
-        console.log(chalk.green("Mock data generated."));
-    }
+fs.writeFile('./src/api/db.json', json, function (err) {
+	if (err) {
+		return console.log(chalk.red(err));
+	} else {
+		console.log(chalk.green('Mock data generated.'));
+	}
 });

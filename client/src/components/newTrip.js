@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function NewTrip({ newTrip, handleChange, handleSubmit }) {
   return (
-    <section className='flex flex-col flex-none items-center w-[272px] secondary-bg-color rounded-xl m-2 p-2'>
+    <section className='flex flex-col flex-none h-full items-center w-[272px] secondary-bg-color rounded-xl m-2 p-2'>
       <form
         onSubmit={handleSubmit}
         className='flex flex-col w-full items-center'
