@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
 	"trips": {
 		"data": [
@@ -42,3 +43,6 @@
 		]
 	}
 }
+=======
+{"trips":{"data":[{"id":63573100,"name":"Timor-Leste","expenses":[{"id":67851238,"name":"Ergonomic Soft Table","price":379},{"id":97839744,"name":"Rustic Rubber Computer","price":211},{"id":97684836,"name":"Sleek Rubber Car","price":435},{"id":72817637,"name":"Generic Plastic Shirt","price":138},{"id":85677050,"name":"Rustic Wooden Bacon","price":284}]},{"id":87774245,"name":"Australia","expenses":[{"id":46622186,"name":"Ergonomic Fresh Chair","price":580},{"id":67335214,"name":"Awesome Rubber Pants","price":736},{"id":82866307,"name":"Fantastic Rubber Fish","price":177},{"id":57607535,"name":"Incredible Rubber Pants","price":448},{"id":50679655,"name":"Refined Soft Bacon","price":108}]},{"id":4026788,"name":"Mozambique","expenses":[{"id":19622459,"name":"Intelligent Cotton Computer","price":308},{"id":44012255,"name":"Incredible Frozen Chips","price":321},{"id":5425706,"name":"Fantastic Plastic Towels","price":530},{"id":16051835,"name":"Rustic Plastic Chicken","price":811},{"id":45714914,"name":"Rustic Cotton Shirt","price":873},{"id":75772578,"name":"Handmade Metal Car","price":991}]}]}}
+>>>>>>> 9666923 (Remove legacy code, finish TypeScript conversion)
