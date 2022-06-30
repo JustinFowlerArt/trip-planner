@@ -1,48 +1,7 @@
-<<<<<<< HEAD
 {
-	"trips": {
-		"data": [
-			{
-				"id": 80247513,
-				"name": "Nauru",
-				"expenses": [
-					{ "id": 36725690, "name": "Intelligent Rubber Salad", "price": 638 },
-					{ "id": 94307637, "name": "Unbranded Soft Car", "price": 223 },
-					{ "id": 59499551, "name": "Sleek Concrete Tuna", "price": 420 },
-					{ "id": 96127449, "name": "Incredible Cotton Chair", "price": 894 },
-					{ "id": 74982972, "name": "Refined Soft Mouse", "price": 77 },
-					{ "id": 7912038, "name": "Incredible Metal Towels", "price": 744 }
-				]
-			},
-			{
-				"id": 25429459,
-				"name": "Turkmenistan",
-				"expenses": [
-					{ "id": 26925274, "name": "Tasty Metal Ball", "price": 726 },
-					{ "id": 64378676, "name": "Generic Metal Soap", "price": 638 },
-					{ "id": 87643950, "name": "Handcrafted Steel Tuna", "price": 199 },
-					{ "id": 80179546, "name": "Incredible Wooden Cheese", "price": 258 },
-					{ "id": 35662470, "name": "Handmade Concrete Shirt", "price": 532 },
-					{ "id": 59757827, "name": "Ergonomic Plastic Pizza", "price": 243 },
-					{ "id": 97007414, "name": "Unbranded Metal Shoes", "price": 307 },
-					{ "id": 47876001, "name": "Intelligent Steel Tuna", "price": 150 }
-				]
-			},
-			{
-				"id": 23983286,
-				"name": "Tanzania",
-				"expenses": [
-					{ "id": 70443342, "name": "Intelligent Frozen Shoes", "price": 266 },
-					{ "id": 39823723, "name": "Handmade Fresh Table", "price": 468 },
-					{ "id": 12130105, "name": "Refined Granite Keyboard", "price": 206 },
-					{ "id": 75273013, "name": "Rustic Granite Chips", "price": 641 },
-					{ "id": 9816972, "name": "Awesome Fresh Ball", "price": 527 },
-					{ "id": 87669745, "name": "Unbranded Wooden Gloves", "price": 4 }
-				]
-			}
-		]
-	}
+  "trips": {
+    "id": 6,
+    "name": "Test",
+    "expenses": []
+  }
 }
-=======
-{"trips":{"data":[{"id":63573100,"name":"Timor-Leste","expenses":[{"id":67851238,"name":"Ergonomic Soft Table","price":379},{"id":97839744,"name":"Rustic Rubber Computer","price":211},{"id":97684836,"name":"Sleek Rubber Car","price":435},{"id":72817637,"name":"Generic Plastic Shirt","price":138},{"id":85677050,"name":"Rustic Wooden Bacon","price":284}]},{"id":87774245,"name":"Australia","expenses":[{"id":46622186,"name":"Ergonomic Fresh Chair","price":580},{"id":67335214,"name":"Awesome Rubber Pants","price":736},{"id":82866307,"name":"Fantastic Rubber Fish","price":177},{"id":57607535,"name":"Incredible Rubber Pants","price":448},{"id":50679655,"name":"Refined Soft Bacon","price":108}]},{"id":4026788,"name":"Mozambique","expenses":[{"id":19622459,"name":"Intelligent Cotton Computer","price":308},{"id":44012255,"name":"Incredible Frozen Chips","price":321},{"id":5425706,"name":"Fantastic Plastic Towels","price":530},{"id":16051835,"name":"Rustic Plastic Chicken","price":811},{"id":45714914,"name":"Rustic Cotton Shirt","price":873},{"id":75772578,"name":"Handmade Metal Car","price":991}]}]}}
->>>>>>> 9666923 (Remove legacy code, finish TypeScript conversion)

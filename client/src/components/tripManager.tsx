@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getTrips } from '../api/tripsApi';
+import { createTrip, deleteTrip, getTrips, updateTrip } from '../api/tripsApi';
 import NewTrip from './newTrip';
 import Trip from './trip';
 import SkeletonLoader from './skeletonLoader';
@@ -50,15 +50,16 @@ export default function TripManager() {
 				expenses: [],
 			},
 		]);
-		// createTrip({
-		// 	id: newTrip.id,
-		// 	name: newTrip.name,
-		// 	expenses: newTrip.expenses,
-		// });
+		createTrip({
+			id: trips.length + 1,
+			name: newTrip,
+			expenses: [],
+		});
 	};
 
 	const handleDeleteTrip = (id: number) => {
 		setTrips(trips.filter(trip => trip.id !== id));
+		deleteTrip(id);
 	};
 
 	const handleAddExpense = (e: React.SyntheticEvent, index: number) => {
@@ -74,6 +75,9 @@ export default function TripManager() {
 			price: parseFloat(target.price.value),
 		});
 		setTrips(updatedTrips);
+		updateTrip(trips[index].id, {
+			expenses: trips[index].expenses,
+		});
 	};
 
 	const handleDeleteExpense = (index: number, id: number) => {
@@ -83,6 +87,9 @@ export default function TripManager() {
 			expenseItem => expenseItem.id !== id
 		);
 		setTrips(updatedTrips);
+		updateTrip(updatedTrips[index].id, {
+			expenses: updatedTrip.expenses,
+		});
 	};
 
 	// const handleUpdateExpense = e => {

@@ -7,12 +7,8 @@
 		"plugin:react/recommended",
 		"plugin:react-hooks/recommended",
 		"plugin:import/typescript",
-<<<<<<< HEAD
-		"plugin:@typescript-eslint/recommended"
-=======
 		"plugin:@typescript-eslint/recommended",
 		"prettier"
->>>>>>> 9666923 (Remove legacy code, finish TypeScript conversion)
 	],
 	"parserOptions": {
 		"ecmaVersion": "latest",
@@ -32,11 +28,7 @@
 		"no-eval": "error",
 		"no-implied-eval": "error",
 		"no-new-func": "error",
-<<<<<<< HEAD
-		"react/prop-types": "warn",
-=======
 		"react/prop-types": "off",
->>>>>>> 9666923 (Remove legacy code, finish TypeScript conversion)
 		"react/react-in-jsx-scope": "off"
 	}
 }
