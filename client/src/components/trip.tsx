@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useClickedOutside from '../hooks/useClickedOutside';
 import Expense from './expense';
 import NewExpense from './newExpense';
 import { Trip } from './tripManager';
@@ -7,7 +8,18 @@ interface Props {
 	trip: Trip;
 	index: number;
 	handleDeleteTrip: (id: number) => void;
+	handleUpdateTrip: (
+		e: React.ChangeEvent<HTMLInputElement>,
+		index: number,
+		updated: boolean
+	) => void;
 	handleAddExpense: (e: React.SyntheticEvent, index: number) => void;
+	handleUpdateExpense: (
+		e: React.ChangeEvent<HTMLInputElement>,
+		index: number,
+		id: number,
+		updated: boolean
+	) => void;
 	handleDeleteExpense: (index: number, id: number) => void;
 }
 
@@ -15,14 +27,23 @@ export default function Trip({
 	trip,
 	index,
 	handleDeleteTrip,
+	handleUpdateTrip,
 	handleAddExpense,
 	handleDeleteExpense,
+	handleUpdateExpense,
 }: Props) {
-	const [showForm, setShowForm] = useState(false);
+	const [showExpenseForm, setShowExpenseForm] = useState(false);
+	const [renameTrip, setRenameTrip] = useState(false);
+	const [updated, setUpdated] = useState(false);
 	const [expenseInfo, setExpenseInfo] = useState({
 		name: '',
 		price: '',
 	});
+
+	const toggleUpdated = () => {
+		setUpdated(!updated);
+		console.log(updated);
+	};
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
@@ -38,7 +59,7 @@ export default function Trip({
 			name: '',
 			price: '',
 		});
-		setShowForm(false);
+		setShowExpenseForm(!showExpenseForm);
 	};
 
 	const total = trip.expenses.length
@@ -49,20 +70,43 @@ export default function Trip({
 		  )
 		: 0;
 
+	const ref = useClickedOutside(renameTrip, setRenameTrip, toggleUpdated);
+
 	return (
 		<section className='relative flex flex-col h-full min-h-[500px] sm:min-h-0 flex-none justify-start w-[272px] items-center secondary-bg-color rounded-xl m-2 p-2'>
-			<h2 className='m-2'>{trip.name}</h2>
-			<ul className='flex flex-col expense-list min-h-[300px] sm:min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain mb-3'>
+			<div ref={ref}>
+				{renameTrip ? (
+					<input
+						className='m-2 text-center text-black '
+						type='text'
+						name='name'
+						value={trip.name}
+						onChange={e => handleUpdateTrip(e, index, updated)}
+					></input>
+				) : (
+					<h2
+						className='m-2'
+						onClick={() => {
+							setRenameTrip(!renameTrip);
+							toggleUpdated();
+						}}
+					>
+						{trip.name}
+					</h2>
+				)}
+			</div>
+			<ul className='flex flex-col expense-list w-full min-h-[300px] sm:min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain mb-3'>
 				{trip.expenses?.map(expense => (
 					<Expense
 						key={expense.id}
 						index={index}
 						expense={expense}
+						handleUpdateExpense={handleUpdateExpense}
 						handleDeleteExpense={handleDeleteExpense}
 					/>
 				))}
 			</ul>
-			{showForm ? (
+			{showExpenseForm ? (
 				<NewExpense
 					index={index}
 					expenseInfo={expenseInfo}
@@ -73,7 +117,7 @@ export default function Trip({
 			) : (
 				<button
 					className='primary-bg-color rounded-2xl p-3 m-3 border border-white'
-					onClick={() => setShowForm(true)}
+					onClick={() => setShowExpenseForm(!showExpenseForm)}
 				>
 					Add Expense
 				</button>

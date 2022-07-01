@@ -40,6 +40,22 @@ export default function TripManager() {
 		setNewTrip(e.currentTarget.value);
 	};
 
+	const handleUpdateTrip = (
+		e: React.ChangeEvent<HTMLInputElement>,
+		index: number,
+		updated: boolean
+	) => {
+		const updatedTrips = [...trips];
+		updatedTrips[index].name = e.target.value;
+		setTrips(updatedTrips);
+		if (updated) {
+			console.log(`${updated} in UpdateTrip`);
+			updateTrip(trips[index].id, {
+				name: trips[index].name,
+			});
+		}
+	};
+
 	const handleSubmitTrip = (e: React.SyntheticEvent) => {
 		e.preventDefault();
 		setTrips([
@@ -80,6 +96,35 @@ export default function TripManager() {
 		});
 	};
 
+	const handleUpdateExpense = (
+		e: React.ChangeEvent<HTMLInputElement>,
+		index: number,
+		id: number,
+		updated: boolean
+	) => {
+		const { name, value } = e.target;
+		let input: string | number = value;
+		if (name === 'price' && input !== null && input !== undefined) {
+			input = parseFloat(input);
+		}
+		const updatedTrips = [...trips];
+		const updatedExpense = updatedTrips[index].expenses.find(
+			expenseItem => expenseItem.id === id
+		);
+		if (updatedExpense) {
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			updatedExpense[name as keyof Expense] = input;
+		}
+		setTrips(updatedTrips);
+		if (updated) {
+			console.log(`${updated} in UpdatedExpense`);
+			updateTrip(trips[index].id, {
+				expenses: trips[index].expenses,
+			});
+		}
+	};
+
 	const handleDeleteExpense = (index: number, id: number) => {
 		const updatedTrips = [...trips];
 		const updatedTrip = updatedTrips[index];
@@ -91,13 +136,6 @@ export default function TripManager() {
 			expenses: updatedTrip.expenses,
 		});
 	};
-
-	// const handleUpdateExpense = e => {
-	// 	const { name, value } = e.target;
-	// 	const updatedTrip = [...trips];
-	// 	updatedTrip[value][name] = value;
-	// 	setTrips(updatedTrip);
-	// };
 
 	if (error) throw error;
 
@@ -117,9 +155,10 @@ export default function TripManager() {
 							index={index}
 							trip={trip}
 							handleDeleteTrip={handleDeleteTrip}
+							handleUpdateTrip={handleUpdateTrip}
 							handleAddExpense={handleAddExpense}
+							handleUpdateExpense={handleUpdateExpense}
 							handleDeleteExpense={handleDeleteExpense}
-							// handleUpdateExpense={handleUpdateExpense}
 						/>
 					))
 				)}
