@@ -3,22 +3,6 @@
 @tailwind utilities;
 
 @layer components {
-  .primary-color {
-    color: #478ebd;
-  }
-
-  .primary-bg-color {
-    background-color: #478ebd;
-  }
-
-  .secondary-color {
-    color: #0000b5;
-  }
-
-  .secondary-bg-color {
-    background-color: #0000b5;
-  }
-
   .expense-list {
     max-height: calc(100vh - 25rem);
   }
@@ -28,6 +12,7 @@
     width: 80px;
     height: 80px;
   }
+
   .lds-dual-ring:after {
     content: ' ';
     display: block;

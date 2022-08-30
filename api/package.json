@@ -1,5 +1,5 @@
 {
-  "name": "trip-planner-v2",
+  "name": "trip-planner-api",
   "version": "1.0.0",
   "description": "API to access trip information for trip planning app",
   "type": "module",
@@ -8,16 +8,8 @@
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JustinFowlerArt/trip-planner-v2.git"
-  },
   "author": "Justin Fowler",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JustinFowlerArt/trip-planner-v2/issues"
-  },
-  "homepage": "https://github.com/JustinFowlerArt/trip-planner-v2#readme",
   "devDependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.2",

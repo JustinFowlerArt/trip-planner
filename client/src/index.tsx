@@ -1,16 +1,14 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import './index.css';
-import App from './components/app';
-
+import { StrictMode } from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './app';
 import ErrorBoundary from './components/errorBoundary';
+import './index.css';
 
-const container = document.getElementById('app');
-const root = createRoot(container!);
+const root = ReactDOM.createRoot(document.getElementById('root') as Element);
 root.render(
-	<React.StrictMode>
-		<ErrorBoundary>
-			<App />
-		</ErrorBoundary>
-	</React.StrictMode>
+    <StrictMode>
+        <ErrorBoundary>
+            <App />
+        </ErrorBoundary>
+    </StrictMode>
 );
