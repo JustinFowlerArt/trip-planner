@@ -6,7 +6,7 @@
         "prestart": "babel-node buildScripts/startMessage.js",
         "start": "npm-run-all --parallel open:src lint:watch start-mockapi",
         "open:src": "babel-node buildScripts/srcServer.js",
-        "lint": "esw webpack.config.* src buildScripts --color",
+        "lint": "esw webpack.config.* src/**/*.{js,jsx,ts,tsx} buildScripts --color",
         "lint:watch": "npm run lint -- --watch",
         "generate-mock-data": "babel-node buildScripts/generateMockData",
         "prestart-mockapi": "npm run generate-mock-data",
@@ -14,15 +14,15 @@
         "clean-dist": "rimraf ./dist && mkdir dist",
         "prebuild": "npm-run-all clean-dist lint",
         "build": "babel-node buildScripts/build.js",
-        "postbuild": "babel-node buildScripts/distServer.js",
-        "deploy": "surge ./dist"
+		"serve": "serve dist"
     },
     "author": "Justin Fowler",
     "license": "MIT",
     "dependencies": {
         "express": "4.18.1",
         "react": "^18.1.0",
-        "react-dom": "^18.1.0"
+        "react-dom": "^18.1.0",
+        "whatwg-fetch": "3.6.2"
     },
     "devDependencies": {
         "@babel/cli": "^7.17.10",
@@ -39,7 +39,6 @@
         "@typescript-eslint/eslint-plugin": "^5.22.0",
         "@typescript-eslint/parser": "^5.22.0",
         "autoprefixer": "^10.4.7",
-        "babel-jest": "^28.0.3",
         "babel-loader": "^8.2.5",
         "chalk": "^4.1.2",
         "cheerio": "^1.0.0-rc.10",
@@ -65,15 +64,13 @@
         "open": "8.4.0",
         "postcss-cli": "^9.1.0",
         "postcss-loader": "^7.0.0",
-        "react-test-renderer": "^18.1.0",
         "rimraf": "3.0.2",
+        "serve": "^14.0.1",
         "style-loader": "3.3.1",
-        "surge": "^0.23.1",
         "tailwindcss": "^3.0.24",
         "ts-loader": "^9.3.0",
         "typescript": "^4.6.4",
         "webpack": "^5.72.0",
-        "webpack-dev-middleware": "^5.3.1",
-        "whatwg-fetch": "3.6.2"
+        "webpack-dev-middleware": "^5.3.1"
     }
 }

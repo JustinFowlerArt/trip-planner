@@ -69,7 +69,7 @@ export default function Trip({
         : 0;
 
     return (
-        <section className='relative flex flex-col h-full min-h-[500px] sm:min-h-0 flex-none justify-start w-[272px] items-center bg-secondary-color rounded-xl m-2 p-2'>
+        <section className='relative flex flex-col h-full flex-none justify-start w-[272px] items-center bg-secondary-color rounded-xl m-2 p-2'>
             <div>
                 {renameTrip ? (
                     <input
@@ -95,7 +95,7 @@ export default function Trip({
                     </h2>
                 )}
             </div>
-            <ul className='flex flex-col expense-list w-full min-h-[300px] sm:min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain mb-3'>
+            <ul className='flex flex-col expense-list w-full overflow-y-auto overflow-x-hidden overscroll-contain mb-3'>
                 {trip.expenses?.map(expense => (
                     <Expense
                         key={expense.id}
