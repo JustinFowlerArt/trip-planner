@@ -10,7 +10,6 @@ export default {
   devtool: 'source-map',
   entry: {
     main: path.resolve(__dirname, 'src/index'),
-    vendor: path.resolve(__dirname, 'src/vendor'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
